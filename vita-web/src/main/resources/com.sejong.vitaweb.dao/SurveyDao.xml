@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sejong.vitaweb.dao.SurveyDao">
+
+    <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결 -->
+    <resultMap type="vitaSurvey" id="vitaSurvey">
+        <id column="survey_no" property="survey_no"/>
+        <result column="FORNO" property="forno"/>
+        <result column="FUNNO" property="funno"/>
+    </resultMap>
+    <resultMap type="vitaSurveyFunction" id="vitaSurveyFunction">
+        <id column="FUNNO" property="funno"/>
+        <result column="SC" property="sc"/>
+        <result column="ACT" property="act"/>
+        <result column="EYE" property="eye"/>
+        <result column="JOINT" property="joint"/>
+        <result column="OXY" property="oxy"/>
+        <result column="SIGHT" property="sight"/>
+        <result column="SKIN" property="skin"/>
+        <result column="IMN" property="imn"/>
+        <result column="JANG" property="jang"/>
+        <result column="GAN" property="gan"/>
+        <result column="PRS" property="prs"/>
+        <result column="BONE" property="bone"/>
+        <result column="COL" property="col"/>
+        <result column="VMID" property="vmid"/>
+        <result column="ID" property="id"/>
+    </resultMap>
+
+    <resultMap type="vitaSurveyFormulation" id="vitaSurveyFormulation">
+        <id column="FORNO" property="forno"/>
+        <result column="CAP" property="cap"/>
+        <result column="PILL" property="pill"/>
+        <result column="POW" property="pow"/>
+        <result column="LIQ" property="liq"/>
+        <result column="CHEW" property="chew"/>
+        <result column="ID" property="id"/>
+    </resultMap>
+
+
+    <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결 -->
+
+
+    <!--비타민 Logic-->
+    <insert id="insertFunction" parameterType="vitaSurveyFunction">
+        insert into vita_sur_function(SC, ACT, EYE, JOINT, OXY, SIGHT, SKIN, IMN,
+        JANG, GAN, PRS, BONE, COL, VMID, ID)
+        values(#{SC}, #{ACT}, #{EYE}, #{JOINT}, #{OXY}, #{SIGHT}, #{SKIN}, #{IMN},
+        #{JANG}, #{GAN}, #{PRS}, #{BONE}, #{COL}, #{VMID}, #{ID})
+    </insert>
+
+    <insert id="insertFormulation" parameterType="vitaSurveyFormulation">
+        insert into vita_sur_formulation(CAP, PILL, POW, LIQ, CHEW, ID)
+        values(#{CAP}, #{PILL}, #{POW}, #{LIQ}, #{CHEW}, #{ID})
+    </insert>
+
+    <insert id="insertSurvey" parameterType="vitaSurvey">
+        insert into vita_survey(forno, funno)
+        values(#{forno}, #{funno})
+    </insert>
+
+    <select id="getForNo" resultType="int">
+        select forno from vita_sur_formulation where id = #{id}
+    </select>
+
+    <select id="getFuncNo" resultType="int">
+        select funno from vita_sur_function where id = #{id}
+    </select>
+
+    <select id="findFunctionById" resultMap="vitaSurveyFunction">
+        select * from vita_sur_function where id = #{id}
+    </select>
+
+    <select id="isFunctionNullById" resultType="int">
+        select count(*) from vita_sur_function where id = #{id}
+    </select>
+
+    <select id="findFormulationById" resultMap="vitaSurveyFormulation">
+        select * from vita_sur_formulation where id = #{id}
+    </select>
+
+    <update id="updateFunction" parameterType="vitaSurveyFunction">
+        update vita_sur_function
+        set
+        SC=#{SC}, ACT=#{ACT}, EYE=#{EYE}, JOINT=#{JOINT}, OXY=#{OXY}, SIGHT=#{SIGHT},
+        SKIN=#{SKIN}, IMN=#{IMN}, JANG=#{JANG}, GAN=#{GAN}, PRS=#{PRS}, BONE=#{BONE},
+        COL=#{COL}, VMID=#{VMID}
+        where
+        id = #{id};
+    </update>
+
+    <update id="updateFormulation" parameterType="vitaSurveyFormulation">
+        update
+            vita_sur_formulation
+        set
+            CAP=#{CAP}, PILL=#{PILL}, POW=#{POW}, LIQ=#{LIQ}, CHEW=#{CHEW}
+        where
+            id = #{id};
+    </update>
+
+
+</mapper>
