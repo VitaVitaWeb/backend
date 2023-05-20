@@ -1,2 +1,2 @@
 rootProject.name = 'vita-web'
-include('app')
+include('vita-web')
