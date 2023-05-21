@@ -28,4 +28,7 @@ public interface SurveyService {
 
 
     int isFunctionNullById(String id);
+
+    boolean isDuplicatedSurvey(String id);
+
 }

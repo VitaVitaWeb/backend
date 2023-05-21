@@ -65,4 +65,10 @@ public class DefaultSurveyService implements SurveyService {
   public int isFunctionNullById(String id) {
     return surveyDao.isFunctionNullById(id);
   }
+
+  @Override
+  public boolean isDuplicatedSurvey(String id) {
+    if(surveyDao.isDuplicatedSurvey(id)>0) return true;
+    else return false;
+  }
 }

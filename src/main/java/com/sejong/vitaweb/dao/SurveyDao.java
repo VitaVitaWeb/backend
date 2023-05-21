@@ -1,9 +1,5 @@
 package com.sejong.vitaweb.dao;
 
-import com.sejong.vitaweb.vo.VitaFormulation;
-import com.sejong.vitaweb.vo.VitaFunction;
-import com.sejong.vitaweb.vo.VitaSurveyFormulation;
-import com.sejong.vitaweb.vo.VitaSurveyFunction;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -28,4 +24,6 @@ public interface SurveyDao {
 
 
     int isFunctionNullById(String id);
+
+    int isDuplicatedSurvey(String id);
 }

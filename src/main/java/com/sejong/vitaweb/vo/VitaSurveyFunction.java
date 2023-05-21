@@ -28,4 +28,22 @@ public class VitaSurveyFunction implements Serializable {
     private boolean vmid; // 혈중 중성 지질
 
     private String id;
+
+    public VitaSurveyFunction(VitaSurveyDto vitaSurveyInfo) {
+        this.act = vitaSurveyInfo.isAct();
+        this.sc = vitaSurveyInfo.isSc();
+        this.eye = vitaSurveyInfo.isEye();
+        this.joint = vitaSurveyInfo.isJoint();
+        this.oxy = vitaSurveyInfo.isOxy();
+        this.sight = vitaSurveyInfo.isSight();
+        this.skin = vitaSurveyInfo.isSkin();
+        this.gan = vitaSurveyInfo.isGan();
+        this.imn = vitaSurveyInfo.isImn();
+        this.jang = vitaSurveyInfo.isJang();
+        this.prs = vitaSurveyInfo.isPrs();
+        this.bone = vitaSurveyInfo.isBone();
+        this.col = vitaSurveyInfo.isCol();
+        this.vmid = vitaSurveyInfo.isVmid();
+        this.id = vitaSurveyInfo.getId();
+    }
 }

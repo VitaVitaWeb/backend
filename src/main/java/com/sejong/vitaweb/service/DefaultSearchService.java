@@ -1,9 +1,6 @@
 package com.sejong.vitaweb.service;
 
 import com.sejong.vitaweb.dao.SearchDao;
-import com.sejong.vitaweb.dao.SurveyDao;
-import com.sejong.vitaweb.vo.VitaSurveyFormulation;
-import com.sejong.vitaweb.vo.VitaSurveyFunction;
 import com.sejong.vitaweb.vo.Vitamin;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
