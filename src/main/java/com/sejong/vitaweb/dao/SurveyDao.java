@@ -1,5 +1,7 @@
 package com.sejong.vitaweb.dao;
 
+import com.sejong.vitaweb.vo.VitaSurveyFormulation;
+import com.sejong.vitaweb.vo.VitaSurveyFunction;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
