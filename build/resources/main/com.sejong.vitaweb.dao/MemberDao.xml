@@ -18,7 +18,7 @@
     <!--회원 추가-->
     <insert id="join" parameterType="Member">
         insert into vita_member(ID,PWD,NAME, PHN, BTH, GEN)
-        values(#{id},sha2(#{password},256),#{name},#{phoneNo}, #{birthDay}, #{gender})
+        values(#{id},#{password},#{name},#{phoneNo}, #{birthDay}, #{gender})
     </insert>
 
     <!--로그인 조회-->
@@ -96,7 +96,7 @@
         from
             vita_member
         where
-            name = #{name}, birthday=#{birthday}, gender=#{gender}
+            name = #{name} and bth=#{birthday} and gen=#{gender}
     </select>
 
 <!--    <select id="findpwd" parameterType="map" resultMap="memberMap">-->
