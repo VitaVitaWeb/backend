@@ -2,20 +2,28 @@ package com.sejong.vitaweb.web.survey;
 
 import com.sejong.vitaweb.service.SurveyService;
 import com.sejong.vitaweb.vo.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/survey/")
 public class SurveyController {
-    @Autowired
-    SurveyService surveyService;
+    private  final SurveyService surveyService;
 
     @PostMapping("insert")
     public void insert(@RequestBody VitaSurveyDto vitaSurveyDto) {
+        if(vitaSurveyDto == null || vitaSurveyDto.getId() == null) {
+            throw new IllegalArgumentException("The vitaSurveyDto or its id should not be null.");
+        }
+
         log.info("info = {}", vitaSurveyDto);
         VitaSurveyFormulation vitaSurveyFormulation = new VitaSurveyFormulation(vitaSurveyDto);
         VitaSurveyFunction vitaSurveyFunction = new VitaSurveyFunction(vitaSurveyDto);
@@ -31,8 +39,15 @@ public class SurveyController {
         }
     }
 
+
     @GetMapping("function")
-    public VitaSurveyFunction getVitaFunction(@RequestParam String id) {
+    public VitaSurveyFunction getVitaFunction(@RequestParam String id) throws Exception {
+        try {
+            id = URLDecoder.decode(id, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            throw new Exception("Invalid encoding");
+        }
         log.info("id = {}", id);
         VitaSurveyFunction vitaSurveyFunction = surveyService.findFunctionById(id);
         log.info("vitaFunction = {}", vitaSurveyFunction);
@@ -40,7 +55,13 @@ public class SurveyController {
     }
 
     @GetMapping("formulation")
-    public VitaSurveyFormulation getVitaFormulation(@RequestParam String id) {
+    public VitaSurveyFormulation getVitaFormulation(@RequestParam String id) throws Exception {
+        try {
+            id = URLDecoder.decode(id, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            throw new Exception("Invalid encoding");
+        }
         log.info("id = {}", id);
         return surveyService.findFormulationById(id);
     }

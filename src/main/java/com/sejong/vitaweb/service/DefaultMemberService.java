@@ -5,6 +5,7 @@ import com.sejong.vitaweb.vo.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -21,6 +23,8 @@ import java.util.Properties;
 public class DefaultMemberService implements MemberService {
   @Autowired
   private final MemberDao memberDao;
+
+
 
   @Autowired
   public DefaultMemberService(MemberDao memberDao) {
@@ -85,6 +89,16 @@ public class DefaultMemberService implements MemberService {
   public Member findId(String name, Date birthday, int gender) throws Exception {
     return memberDao.findId(name, birthday, gender);
   }
+
+
+  public boolean updatePassword(String id, String newPassword) {
+    Map<String, String> params = new HashMap<>();
+    params.put("id", id);
+    params.put("pwd", newPassword);
+    return memberDao.updatePassword(params) > 0;
+  }
+
+
 
 
 //  @Override

@@ -1,13 +1,10 @@
 package com.sejong.vitaweb.service;
 
 import com.sejong.vitaweb.dao.SurveyDao;
-import com.sejong.vitaweb.dao.VitaDao;
 import com.sejong.vitaweb.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

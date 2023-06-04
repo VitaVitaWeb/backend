@@ -16,11 +16,13 @@ public class Member implements Serializable {
   private String password;
   private Date createdDate;
   private String name;
-//  private String nickName;
-//  private String email;
   private String phoneNo;
   private Date birthDay;
   private int gender;
+
+  public Member() {
+  }
+
 
 
 }
